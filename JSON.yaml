@@ -1,0 +1,14 @@
+- name: "Run show ip bgp"
+  eos_command:
+   commands:
+    - "show ip route | json"
+    - "show ip bgp | json"
+   timeout: 240
+  register: result
+  ignore_errors: yes
+  
+- name: "Save show ip bgp to file - json"
+  copy:
+   content: "{{ result.stdout }}"
+   dest: "{{inventory_hostname}}_output.txt"
+  when: result.failed is not defined or not result.failed
