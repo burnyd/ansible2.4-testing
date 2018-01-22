@@ -1,7 +1,0 @@
-{% for vlan in vlans %}
-{% set count = 1 %}
-{% set count = count + 1 %}
-interface Vlan {{ vlan.vlanid }}
-ip address 10.0.{{ vlan.vlanid }}.{{ count }}/24
-ip virtual-router address 10.0.{{ vlan.vlanid }}.1
-{% endfor %}}
